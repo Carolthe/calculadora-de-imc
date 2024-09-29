@@ -1,16 +1,20 @@
-export default function Imc (){
-    const [altura, setAltura] =("")
-    const [peso, setPeso] = ("")
+import { useState } from "react"
 
-    function inputAltura (){
-        setAltura(altura)
-    }
-    function inputPeso (){
-        setPeso(peso)
-    }
+export default function Imc (){
+    const [altura, setAltura] = useState("")
+    const [peso, setPeso] = useState("")
+    const [imc, setImc] = useState(null)
+
+    // function inputAltura (){
+    //     setAltura(altura)
+    // }
+    // function inputPeso (){
+    //     setPeso(peso)
+    // }
     function calculoPesoAltura (){
-        inputAltura * inputAltura / inputPeso
-        console.log(calculoPesoAltura)
+        const alturametros = altura
+        const resultado = peso / ( alturametros * alturametros)
+        setImc(resultado.toFixed(2))
     }
     
 
@@ -18,16 +22,16 @@ export default function Imc (){
     <>
         <input 
         value={altura}
-        onChange={inputAltura}
+        onChange={(e)=> setAltura(e.target.value)}
         placeholder="Insira a sua altura:" />
         <input 
         value={peso}
-        onChange={inputPeso}
+        onChange={(e)=> setPeso(e.target.value)}
         placeholder="Insira o seu peso:"/>
         <button
         onClick={calculoPesoAltura}
         >calcular</button>
-        <p>{calculoPesoAltura}</p>
+        <p>{imc}</p>
     </>
     )
 }
